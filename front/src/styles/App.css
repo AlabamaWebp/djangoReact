@@ -1,0 +1,107 @@
+.container {
+    padding: 16px;
+    background-color: white;
+    margin: 1% 5%;
+}
+
+nav {
+    width: 100vw;
+    height: 80px;
+    background-color: white;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    padding: 0 50px;
+    border-bottom: solid rgba(0, 0, 0, 0.123) 1px;
+}
+
+a {
+    color: dodgerblue;
+    text-decoration: none;
+}
+
+.cont {
+    background-color: white;
+    width: 95%;
+    /* padding: 2.5%; */
+    min-height: 20px;
+}
+
+.child {
+    padding: 10px 0;
+}
+
+.bord {
+    border: solid rgba(0, 0, 0, 0.5) 1px;
+    border-radius: 5px;
+}
+
+.bord-b {
+    border-bottom: solid rgba(0, 0, 0, 0.5) 1px;
+}
+
+.padd {
+    margin: 2.5%;
+    padding: 25px;
+}
+
+.flex {
+    display: flex;
+}
+
+.between {
+    display: flex;
+    justify-content: space-between;
+}
+
+.lo {
+    padding: 10px;
+    margin: 0;
+    background-color: rgb(184, 56, 56);
+}
+
+.block {
+    margin: 10px;
+}
+
+.ed {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    opacity: 0.9;
+    margin: 0 0 0 30px;
+    height: 40px;
+    padding: 7px;
+}
+
+.ed:hover {
+    opacity: 1;
+}
+
+.del {
+    background-color: rgb(184, 56, 56);
+}
+
+.right {
+    display: flex;
+    width: 100%;
+    justify-content: right;
+}
+
+.polubut {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    opacity: 0.9;
+}
+
+.search {
+    width: 100%;
+}
+
+.search:hover,
+.search:focus {
+    color: black;
+}
