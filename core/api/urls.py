@@ -20,14 +20,14 @@ urlpatterns = [
          name='token_verify'),
     path('blacklist/',
       LogoutAndBlacklistRefreshTokenForUserView.as_view(), name='blacklist'),
-    path('u/', UserApi.as_view(), name="user"),
+    # path('u/', UserApi.as_view(), name="user"),
     path('u/c', CustomUserCreate.as_view(), name="create_user"),
     path('p/', PubApi.as_view(), name="pub"),
     path('p/<int:pk>', PubApiDelete.as_view(), name="pubpk"),
+    path('h/', HisApi.as_view(), name="his"),
     # path('e/', EdApi.as_view(), name="ed"),
-    # path('h/', HisApi.as_view(), name="his"),
 ]
-
-# router = DefaultRouter()
-# router.register(r'pubserch', PublicationViewSet)
-# urlpatterns += router.urls
+from .viewsets import PublicationViewSet
+router = DefaultRouter()
+router.register(r'pubserch', PublicationViewSet)
+urlpatterns += router.urls

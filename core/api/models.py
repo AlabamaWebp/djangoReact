@@ -1,20 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-# from django.contrib.auth import get_user_model
-
-# User = get_user_model()
-
-# class User(models.Model):
-#     username = models.CharField(unique=True, max_length=20)
-#     email = models.EmailField(unique=True, max_length=100)
-#     password = models.CharField(max_length=100)
 
 
 class User(AbstractUser):
-    # pass
-    # username = models.CharField(unique=True, max_length=20)
-    email = models.EmailField(unique=True, max_length=100)
-    # password = models.CharField(max_length=100)
+    email = models.EmailField(blank=True)
+    # REQUIRED_FIELDS = ["password"]
 
 
 class Pub(models.Model):
@@ -25,11 +15,9 @@ class Pub(models.Model):
         return self.content
 
 
-# class His(models.Model):
-#     user = models.ForeignKey('User', on_delete=models.PROTECT)
-#     pub = models.ForeignKey(Pub, on_delete=models.PROTECT)
-#
-#
-# class Ed(models.Model):
-#     user = models.ForeignKey('User', on_delete=models.PROTECT)
-#     pub = models.ForeignKey(Pub, on_delete=models.PROTECT)
+class His(models.Model):
+    user = models.ForeignKey('User', on_delete=models.PROTECT)
+    last_pub = models.TextField(null=True)
+    pub = models.TextField()
+    action = models.CharField(max_length=14)
+

@@ -8,7 +8,6 @@ export default class Signup extends Component {
         this.state = { email: "", password: "" };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        // this.handleSubmitWThen = this.handleSubmitWThen.bind(this);
     }
     handleChange(event) {
         this.setState({ [event.target.name]: event.target.value });
@@ -17,16 +16,19 @@ export default class Signup extends Component {
         event.preventDefault();
         axiosInstance.post('/u/c', {
             username: this.state.email,
-            email: this.state.email,
+            email: "",
             password: this.state.password
         })
-            .then(function (response) {
-                console.log(response);
-                window.location.href = "/login"
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        // axiosInstance.post('/token/', {
+        //     username: this.state.email,
+        //     password: this.state.password
+        // })
+        //     .then(function (response) {
+        //         axiosInstance.defaults.headers['Authorization'] = "Bearer " + response.data.access;
+        //         localStorage.setItem('access_token', response.data.access);
+        //         localStorage.setItem('refresh_token', response.data.refresh);
+        //         window.location.href = "/";
+        //     })
     }
     render() {
         return (

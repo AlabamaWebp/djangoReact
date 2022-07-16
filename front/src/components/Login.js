@@ -9,7 +9,6 @@ export default class Login extends Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        // this.handleSubmitWThen = this.handleSubmitWThen.bind(this);
     }
     handleChange(event) {
         this.setState({ [event.target.name]: event.target.value });
@@ -18,33 +17,15 @@ export default class Login extends Component {
         event.preventDefault();
         axiosInstance.post('/token/', {
             username: this.state.email,
-            // email: this.state.email,
             password: this.state.password
         })
             .then(function (response) {
-                // console.log(response);
                 axiosInstance.defaults.headers['Authorization'] = "Bearer " + response.data.access;
                 localStorage.setItem('access_token', response.data.access);
                 localStorage.setItem('refresh_token', response.data.refresh);
                 window.location.href = "/";
             })
-            .catch(function (error) {
-                console.log(error);
-            });
     }
-    // async isLoggedIn(event) {
-    //     event.preventDefault();
-    //     try {
-    //         const response = await axiosInstance.post('/token/refresh/', {
-    //             username: this.state.email,
-    //             password: this.state.password
-
-    //         });
-    //         return response;
-    //     } catch (error) {
-    //         throw error;
-    //     }
-    // }
     render() {
         return (
             <div>

@@ -40,8 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'api',
     'corsheaders',
-    'rest_framework_simplejwt.token_blacklist'
-    # 'api.apps.ApiConfig',
+    'rest_framework_simplejwt.token_blacklist',
 ]
 
 AUTH_USER_MODEL = 'api.User'

@@ -4,19 +4,12 @@ from rest_framework.views import APIView
 # from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from .models import User, Pub#, Ed, His
-from .serializers import \
-    UserSerializer, PubSerializer, CustomUserSerializer, PubpkSerializer#, EdSerializer, HisSerializer
+from .models import *
+from .serializers import *
 
 
-class UserApi(generics.ListAPIView):
-    permission_classes = (permissions.IsAdminUser,)    # ListCreateAPIView
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
 
 
-# class ObtainTokenPairWithColorView(TokenObtainPairView):
-#     serializer_class = MyTokenObtainPairSerializer
 class LogoutAndBlacklistRefreshTokenForUserView(APIView):
     permission_classes = (permissions.AllowAny,)
     # authentication_classes = ()
@@ -62,13 +55,11 @@ class PubApiDelete(generics.RetrieveUpdateDestroyAPIView):
         serializer.save(user=self.request.user)
 
 
-# class EdApi(generics.ListCreateAPIView):
-#     queryset = Ed.objects.all()
-#     serializer_class = EdSerializer
-#     permission_classes = [permissions.IsAuthenticated]
-#
-#
-# class HisApi(generics.ListCreateAPIView):
-#     queryset = His.objects.all()
-#     serializer_class = HisSerializer
-#     permission_classes = [permissions.IsAuthenticated]
+class HisApi(generics.ListCreateAPIView):
+    queryset = His.objects.all()
+    serializer_class = HisSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+

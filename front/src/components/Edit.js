@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axiosInstance from '../Instance';
-import { Link } from "react-router-dom";
+// ?search=
 export default class Edit extends Component {
     constructor(props) {
         super(props);
@@ -18,25 +18,33 @@ export default class Edit extends Component {
         axiosInstance.put('p/' + this.state.id, {
             content: this.state.content
         })
-            .then(() => {
-                window.location.reload();
-            });
+        axiosInstance.post('/h/', {
+            action: "Изменение",
+            pub: this.state.content,
+            last_pub: this.props.lastContent
+        });
+        this.props.back()
     }
+
     componentDidMount() {
-        this.state.id = this.props.id
+        this.setState({
+            id: this.props.id
+        })
     }
     render() {
         return (
             <>
                 <nav className='between'>
                     <b>Редактирование записи</b>
-                    <Link to="/">Назад</Link>
+                    <button className='back' onClick={() => this.props.back()}>Назад</button>
                 </nav>
-                <form className="container" onSubmit={this.handleSubmit} >
+                <form className="container" >
+                    {/* onSubmit={this.handleSubmit} */}
                     <textarea placeholder="Введите сообщение..." style={{ fontSize: 22, height: 200, maxWidth: '100%', minWidth: '100%', minHeight: 70 }}
                         className="search" type="text" value={this.state.content}
                         onChange={this.handleChange} />
-                    <input className="but" type="submit" value="Готово" />
+                    {/* <input className="but" type="submit" value="Готово" /> */}
+                    <button className='but' onClick={() => this.handleSubmit()}>Готово</button>
                 </form>
             </>
         )

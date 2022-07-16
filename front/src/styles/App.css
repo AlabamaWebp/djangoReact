@@ -98,10 +98,37 @@ a {
 }
 
 .search {
-    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* height: 60px; */
 }
+
+/* .search2 {
+    margin: 5px 0 22px 15px;
+    padding: 19.5px;
+}
+
+.search3 {
+    margin: 0;
+    padding: 0;
+} */
 
 .search:hover,
 .search:focus {
     color: black;
+}
+
+.back {
+    position: absolute;
+    background-color: white;
+    color: dodgerblue;
+    margin: 6px 30px;
+    /* margin: 1% 5%; */
+    font-size: 22px;
+    right: 0;
+}
+
+.margin {
+    margin: 0 0 0 20px;
 }
