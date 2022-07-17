@@ -19,6 +19,13 @@ export default class History extends Component {
             });
     }
     render() {
+        if (this.state.repo.length === 0 & this.state.isLoaded) {
+            return (<><nav className='between'>
+                <b>История записей</b>
+                <button className='back' onClick={() => this.props.back()}>Назад</button>
+            </nav>< div className='container' ><b>Нет записей</b></div >
+            </>)
+        }
         return (
             <>
                 <nav className='between'>

@@ -50,7 +50,7 @@ export default class pub extends Component {
             return (<div className='container' ><b>Идёт загрузка...</b></div >)
         }
         if (this.state.repo.length === 0 & this.state.isLoaded) {
-            return (< div className='container' ><Search setSearch={this.setSearch} /><b>Нет записей</b></div >)
+            return (< div className='container' ><b>Нет записей</b></div >)
         }
         return (
             <div className='container'>

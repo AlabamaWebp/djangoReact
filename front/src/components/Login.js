@@ -18,13 +18,14 @@ export default class Login extends Component {
         axiosInstance.post('/token/', {
             username: this.state.email,
             password: this.state.password
+        }).then(function (response) {
+            axiosInstance.defaults.headers['Authorization'] = "Bearer " + response.data.access;
+            localStorage.setItem('access_token', response.data.access);
+            localStorage.setItem('refresh_token', response.data.refresh);
+            window.location.href = "/";
+        }).catch(() => {
+            alert("Неверный ввод")
         })
-            .then(function (response) {
-                axiosInstance.defaults.headers['Authorization'] = "Bearer " + response.data.access;
-                localStorage.setItem('access_token', response.data.access);
-                localStorage.setItem('refresh_token', response.data.refresh);
-                window.location.href = "/";
-            })
     }
     render() {
         return (
@@ -36,7 +37,7 @@ export default class Login extends Component {
                     <h3>Вход</h3>
                     <div className="cont child">
                         <p>Email:</p>
-                        <input name="email" type="text" value={this.state.email} onChange={this.handleChange} />
+                        <input name="email" type="email" value={this.state.email} onChange={this.handleChange} />
                     </div>
                     <div className="cont child">
                         <p>Пароль:</p>
