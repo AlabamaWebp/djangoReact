@@ -16,7 +16,7 @@ export default class Home extends Component {
     }
     handleHistory() { this.setState({ history: true }) }
     handleCreate() { this.setState({ create: true }) }
-    handleBack() { this.setState({ create: false, history: false }); window.location.reload() }
+    handleBack() { this.setState({ create: false, history: false }); this.forceUpdate(); }
     async handleLogout() {
         try {
             const response = await axiosInstance.post('/blacklist/', {
@@ -47,7 +47,7 @@ export default class Home extends Component {
                         </div>
                     </nav>
                     <div className=''>
-                        <Pub updateHide={this.updateHide} />
+                        <Pub />
                     </div>
                 </div >
 

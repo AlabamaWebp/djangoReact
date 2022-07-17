@@ -37,8 +37,8 @@ export default class History extends Component {
                         <div id={repos.id} className='block' key={repos.id}>
                             <b>Пользователь: {repos.user.username}</b>
                             <div><b>Действие: </b>{repos.action}</div>
-                            <div>Предыдущее содержание: {repos.last_pub}</div>
-                            <div>Содержание: {repos.pub}</div>
+                            <div><b>Предыдущее содержание: </b>{repos.last_pub}</div>
+                            <div><b>Содержание: </b>{repos.pub}</div>
                             <hr></hr>
                         </div>
                     ))}

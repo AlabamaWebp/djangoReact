@@ -10,12 +10,16 @@ export default class pub extends Component {
             id: 0,
             repo: [],
             isEdit: false,
-            content: ""
+            content: "",
+            flagId: false,
+            flagAl: false
         };
         this.handleClick = this.handleClickDel.bind(this);
         this.handleClick = this.handleClickEd.bind(this);
         this.handleBack = this.handleBack.bind(this);
-        this.setSearch = this.setSearch.bind(this)
+        this.setSearch = this.setSearch.bind(this);
+        this.sortId = this.sortId.bind(this);
+        this.sortAl = this.sortAl.bind(this);
     }
     setSearch(value) {
         axiosInstance.get('pubserch/?search=' + value)
@@ -40,23 +44,45 @@ export default class pub extends Component {
                 })
             });
     }
-    handleBack() { this.setState({ isEdit: false }); window.location.reload() }
+    handleBack() { this.setState({ isEdit: false }); this.forceUpdate(); }
+    // window.location.reload()
+    sortId() {
+        this.state.flagId = !this.state.flagId
+        if (this.state.flagId) {
+            this.state.repo.sort((a, b) => a.id > b.id ? -1 : 1);
+        }
+        else {
+            this.state.repo.sort((a, b) => a.id > b.id ? 1 : -1);
+        }
+        this.forceUpdate();
+    }
+    sortAl() {
+        this.state.flagAl = !this.state.flagAl
+        if (this.state.flagAl) {
+            this.state.repo.sort((a, b) => a.content > b.content ? 1 : -1);
+        }
+        else {
+            this.state.repo.sort((a, b) => a.content > b.content ? -1 : 1);
+        }
+        this.forceUpdate();
+    }
     render() {
         if (this.state.isEdit) {
             return (<Edit id={this.state.id} back={this.handleBack}
                 lastContent={this.state.content} />)
         }
         if (!this.state.isLoaded) {
-            return (<div className='container' ><b>Идёт загрузка...</b></div >)
+            return (<div className='container'><b>Идёт загрузка...</b></div>)
         }
         if (this.state.repo.length === 0 & this.state.isLoaded) {
-            return (< div className='container' ><b>Нет записей</b></div >)
+            return (<div className='container'><b>Нет записей</b></div>)
         }
         return (
             <div className='container'>
                 <Search setSearch={this.setSearch} />
+                <div>Сортировка по: <button className='sort' onClick={() => this.sortId()}>id</button> <button className='sort' onClick={() => this.sortAl()}>Алфавиту</button></div>
                 {this.state.repo.map((repos) => (
-                    <div id={repos.id} className='block' key={repos.id}>
+                    <div className='block' key={repos.id}>
                         <b>Пользователь: {repos.user.username}</b>
                         <div>{repos.content}</div>
                         <div className='right'>
